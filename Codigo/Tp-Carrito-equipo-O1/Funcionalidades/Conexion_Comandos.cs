@@ -21,7 +21,7 @@ namespace Funcionalidades
 
         public Conexion_Comandos()
         {
-         conexion = new SqlConnection("server= FACU; database=CATALOGO_P3_DB; Integrated Security = True");
+         conexion = new SqlConnection("server= DESKTOP-A3HCDG7\\SQLEXPRESS; database=CATALOGO_P3_DB; Integrated Security = True");
 
 
             comando = new SqlCommand();
