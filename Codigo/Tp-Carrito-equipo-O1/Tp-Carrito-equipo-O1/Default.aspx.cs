@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Funcionalidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace Tp_Carrito_equipo_O1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            RepositorioArticulo articulo = new RepositorioArticulo();
+            DgvArticulos.DataSource = articulo.ListarConSp();
+            DgvArticulos.DataBind();
         }
     }
 }
