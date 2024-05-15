@@ -21,8 +21,13 @@ namespace Funcionalidades
 
         public Conexion_Comandos()
         {
+<<<<<<< Updated upstream
             conexion = new SqlConnection("server= DESKTOP-A3HCDG7\\SQLEXPRESS; database=CATALOGO_P3_DB; Integrated Security = True");
             //conexion = new SqlConnection("server= FACUHP; database=CATALOGO_P3_DB; Integrated Security = True");
+=======
+         conexion = new SqlConnection("server= DESKTOP-DLD9B46; database=CATALOGO_P3_DB; Integrated Security = True");
+
+>>>>>>> Stashed changes
 
             comando = new SqlCommand();
         }
