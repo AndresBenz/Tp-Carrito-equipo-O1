@@ -15,12 +15,12 @@ namespace Tp_Carrito_equipo_O1
     {
 
         /// <summary>
-        /// Control DgvArticulos.
+        /// Control repRepetirdor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DgvArticulos;
+        protected global::System.Web.UI.WebControls.Repeater repRepetirdor;
     }
 }

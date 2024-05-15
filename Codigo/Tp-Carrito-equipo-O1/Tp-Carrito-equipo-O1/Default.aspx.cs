@@ -1,4 +1,5 @@
-﻿using Funcionalidades;
+﻿using Clases;
+using Funcionalidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace Tp_Carrito_equipo_O1
 {
     public partial class Default : System.Web.UI.Page
     {
+        public List<Articulo> ListaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             RepositorioArticulo articulo = new RepositorioArticulo();
-            DgvArticulos.DataSource = articulo.ListarConSp();
-            DgvArticulos.DataBind();
+            ListaArticulos = articulo.ListarConSp();
+            repRepetirdor.DataSource = ListaArticulos;
+            repRepetirdor.DataBind();
         }
     }
 }
