@@ -24,9 +24,11 @@ namespace Tp_Carrito_equipo_O1
             }
         }
 
-        protected void btnEjemplo_Click(object sender, EventArgs e)
+        protected void btnAñadir_Click(object sender, EventArgs e)
         {
             string valor = ((Button)sender).CommandArgument; //casteo  y del argument me trae explicito
+
+
         }
     }
 }

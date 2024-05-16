@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"  runat="server">
      <div class="container text-center">
     <div class="row">
+        <asp:Repeater runat="server" ID="rpCarrito">
        
             <ItemTemplate>
                 <div class="col-md-4"> 
@@ -20,6 +21,9 @@
                 </div>
                 
             </ItemTemplate>
+                
+        </asp:Repeater>
+
     </div>
 </div>
    

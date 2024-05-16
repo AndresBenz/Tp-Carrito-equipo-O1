@@ -58,10 +58,10 @@ namespace Funcionalidades
 
 
                     aux.IdImagenUrl = new Imagenes();
-                    if (AccesoDatos.Lector["ImagenURL"] is DBNull && AccesoDatos.Lector["IdImg"] is DBNull)
+                    if (AccesoDatos.Lector["ImagenURL"] is DBNull || AccesoDatos.Lector["IdImg"] is DBNull)
                     {
                         aux.IdImagenUrl.id = 0;
-                        aux.IdImagenUrl.ImagenURL = "";
+                        aux.IdImagenUrl.ImagenURL = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
                     }
                     else
                     {
@@ -149,6 +149,9 @@ namespace Funcionalidades
                         aux.IdImagenUrl.id = (int)datos.Lector["IdImg"];
                         aux.IdImagenUrl.ImagenURL = (string)datos.Lector["ImagenUrl"];
                     }
+
+
+
 
 
 

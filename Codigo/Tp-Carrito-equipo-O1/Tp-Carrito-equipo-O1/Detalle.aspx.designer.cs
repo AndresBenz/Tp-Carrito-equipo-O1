@@ -11,7 +11,7 @@ namespace Tp_Carrito_equipo_O1
 {
 
 
-    public partial class Login
+    public partial class Detalle
     {
     }
 }

@@ -17,7 +17,7 @@
                                 <p class="card-text"><%#Eval("Descripcion") %></p>
                                 <p class="card-text"><%#Eval("Precio") %></p>
                                 <a href="Carrito">Agregar al carrito</a>
-                                <asp:Button Text="Ejemplo" runat="server" CssClass="btn btn-primary" ID="btnEjemplo" CommandArgument='<%#Eval("id")%>' CommandName="ArticuloID" OnClick="btnEjemplo_Click" />
+                                <asp:Button Text="Añadir" runat="server" CssClass="btn btn-primary" ID="btnAñadir" CommandArgument='<%#Eval("id")%>' CommandName="ArticuloID" OnClick="btnAñadir_Click" />
                             </div>
                         </div>
                     </div>
