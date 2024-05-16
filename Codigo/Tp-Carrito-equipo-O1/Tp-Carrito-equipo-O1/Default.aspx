@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Lista</h1>
+    <h1 class="d-flex justify-content-center">Articulos</h1>
     <div class="container text-center">
         <div class="row">
             <asp:Repeater ID="repRepetirdor" runat="server">

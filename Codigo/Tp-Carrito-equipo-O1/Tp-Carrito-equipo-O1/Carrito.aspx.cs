@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Clases;
 using Funcionalidades;
 
 namespace Tp_Carrito_equipo_O1
