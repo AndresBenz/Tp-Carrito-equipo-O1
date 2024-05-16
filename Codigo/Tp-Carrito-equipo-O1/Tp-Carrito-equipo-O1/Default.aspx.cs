@@ -16,8 +16,17 @@ namespace Tp_Carrito_equipo_O1
         {
             RepositorioArticulo articulo = new RepositorioArticulo();
             ListaArticulos = articulo.ListarConSp();
-            repRepetirdor.DataSource = ListaArticulos;
-            repRepetirdor.DataBind();
+
+            if(!IsPostBack)
+            {
+            repRepetirdor.DataSource = ListaArticulos; // repite hasta que se quede sin registros
+            repRepetirdor.DataBind(); //bindea
+            }
+        }
+
+        protected void btnEjemplo_Click(object sender, EventArgs e)
+        {
+            string valor = ((Button)sender).CommandArgument; //casteo  y del argument me trae explicito
         }
     }
 }

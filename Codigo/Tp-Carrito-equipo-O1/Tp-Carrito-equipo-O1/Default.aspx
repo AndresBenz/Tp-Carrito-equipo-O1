@@ -7,14 +7,17 @@
     <div class="container text-center">
         <div class="row">
             <asp:Repeater ID="repRepetirdor" runat="server">
-                <ItemTemplate>
+                <ItemTemplate> <%// lo que este dentro del item template es lo que se va a repetior segun este armado. %>
+
                     <div class="col-md-4"> 
                         <div class="card mb-4"> 
-                            <img src='<%#Eval("IdImagenUrl") %>' class="card-img-top" alt="...">
+                            <img src='<%#Eval("IdImagenUrl.ImagenURL") %>' class="card-img-top" alt="..."> <%--// cuando se usa repeater, se usa #Eval("NamePropiedad")--%>
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                 <p class="card-text"><%#Eval("Descripcion") %></p>
-                                <a href="De">content</a>
+                                <p class="card-text"><%#Eval("Precio") %></p>
+                                <a href="Carrito">Agregar al carrito</a>
+                                <asp:Button Text="Ejemplo" runat="server" CssClass="btn btn-primary" ID="btnEjemplo" CommandArgument='<%#Eval("id")%>' CommandName="ArticuloID" OnClick="btnEjemplo_Click" />
                             </div>
                         </div>
                     </div>

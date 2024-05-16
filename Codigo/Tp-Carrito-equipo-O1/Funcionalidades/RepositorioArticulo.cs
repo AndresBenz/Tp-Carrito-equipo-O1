@@ -138,7 +138,7 @@ namespace Funcionalidades
 
                         // me aseguro que no sea nulo
                         aux.IdImagenUrl = new Imagenes();
-                    if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull )
+                    if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull  )
                     {
                         aux.IdImagenUrl.id = 0;
                         aux.IdImagenUrl.ImagenURL = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
