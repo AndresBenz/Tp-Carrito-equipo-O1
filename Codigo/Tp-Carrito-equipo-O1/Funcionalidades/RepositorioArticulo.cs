@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -18,25 +19,26 @@ namespace Funcionalidades
         {
             List<Articulo> listaArticulo = new List<Articulo>();
             Conexion_Comandos AccesoDatos = new Conexion_Comandos();
-            try {
-            AccesoDatos.setearConsulta("select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A INNER join MARCAS M on M.Id = A.IdMarca INNER join CATEGORIAS C on C.Id = A.IdCategoria INNER join IMAGENES I on I.IdArticulo = A.Id");
-            AccesoDatos.ejecutarLectura();
+            try
+            {
+                AccesoDatos.setearConsulta("select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A INNER join MARCAS M on M.Id = A.IdMarca INNER join CATEGORIAS C on C.Id = A.IdCategoria INNER join IMAGENES I on I.IdArticulo = A.Id");
+                AccesoDatos.ejecutarLectura();
 
-            while(AccesoDatos.Lector.Read())
+                while (AccesoDatos.Lector.Read())
                 {
-                        Articulo aux = new Articulo();
+                    Articulo aux = new Articulo();
 
 
 
                     aux.id = (int)AccesoDatos.Lector["Id"];
                     aux.Codigo = (string)AccesoDatos.Lector["Codigo"];
                     aux.Nombre = (string)AccesoDatos.Lector["Nombre"];
-                    aux.descripcion= (string)AccesoDatos.Lector["Descripcion"];
+                    aux.descripcion = (string)AccesoDatos.Lector["Descripcion"];
                     aux.Precio = (decimal)AccesoDatos.Lector["Precio"];
 
 
                     //Creamos un aux marca para poder cargar las columnas
-                    
+
                     aux.idMarca = new Marca();
                     aux.idMarca.Id = (int)AccesoDatos.Lector["IdMarca"];
                     aux.idMarca.Descripcion = (string)AccesoDatos.Lector["DescripcionMarca"];
@@ -52,8 +54,8 @@ namespace Funcionalidades
                     else
                     {
 
-                    aux.idCategoria.Id = (int)AccesoDatos.Lector["Idcategoria"];
-                    aux.idCategoria.Descripcion = (string)AccesoDatos.Lector["DescripcionCate"];
+                        aux.idCategoria.Id = (int)AccesoDatos.Lector["Idcategoria"];
+                        aux.idCategoria.Descripcion = (string)AccesoDatos.Lector["DescripcionCate"];
                     }
 
 
@@ -71,7 +73,7 @@ namespace Funcionalidades
                     }
 
 
-                        listaArticulo.Add(aux);
+                    listaArticulo.Add(aux);
 
                 }
 
@@ -80,14 +82,14 @@ namespace Funcionalidades
                 return listaArticulo;
 
 
-            } 
-            
+            }
+
             catch (Exception ex)
             {
                 throw ex;
 
             }
-          
+
 
 
 
@@ -101,7 +103,7 @@ namespace Funcionalidades
             try
             {
                 string consulta = "select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A left join MARCAS M on M.Id = A.IdMarca left join CATEGORIAS C on C.Id = A.IdCategoria left join IMAGENES I on I.IdArticulo = A.Id where Precio > 0 ";
-              
+
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -136,9 +138,9 @@ namespace Funcionalidades
                     }
 
 
-                        // me aseguro que no sea nulo
-                        aux.IdImagenUrl = new Imagenes();
-                    if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull  )
+                    // me aseguro que no sea nulo
+                    aux.IdImagenUrl = new Imagenes();
+                    if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull)
                     {
                         aux.IdImagenUrl.id = 0;
                         aux.IdImagenUrl.ImagenURL = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
@@ -180,7 +182,7 @@ namespace Funcionalidades
                 Accesodatos.setearParametros("@IdCategoria", nuevoarticulo.idCategoria.Id);
                 Accesodatos.setearParametros("@Precio", nuevoarticulo.Precio);
                 Accesodatos.ejecutarAccion();
-              
+
             }
             catch (Exception ex)
             {
@@ -191,11 +193,11 @@ namespace Funcionalidades
             {
                 Accesodatos.cerrarConexion();
 
-                
+
             }
 
 
-            
+
 
 
         }
@@ -343,7 +345,7 @@ namespace Funcionalidades
                         aux.IdImagenUrl.ImagenURL = (string)datos.Lector["ImagenUrl"];
                     }
 
-                    
+
 
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     lista.Add(aux);
@@ -364,7 +366,7 @@ namespace Funcionalidades
             try
             {
                 datos.setearConsulta("delete from articulos where id = @id");
-                datos.setearParametros("@id",bajaFisica.id);
+                datos.setearParametros("@id", bajaFisica.id);
                 datos.ejecutarAccion();
 
             }
@@ -374,7 +376,78 @@ namespace Funcionalidades
             }
         }
 
+        public Articulo BuscarID(int id)
+        {
+            
+            Conexion_Comandos AccesoDatos = new Conexion_Comandos();
+            try
+            {
+                AccesoDatos.setearConsulta("select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A INNER join MARCAS M on M.Id = A.IdMarca INNER join CATEGORIAS C on C.Id = A.IdCategoria INNER join IMAGENES I on I.IdArticulo = A.Id where IdArticulo = @id");
+                AccesoDatos.setearParametros("@id",id);
+                AccesoDatos.ejecutarLectura();
+                Articulo aux = new Articulo();
+                while (AccesoDatos.Lector.Read())
+                {
+                    aux.id = (int)AccesoDatos.Lector["Id"];
+                    aux.Codigo = (string)AccesoDatos.Lector["Codigo"];
+                    aux.Nombre = (string)AccesoDatos.Lector["Nombre"];
+                    aux.descripcion = (string)AccesoDatos.Lector["Descripcion"];
+                    aux.Precio = (decimal)AccesoDatos.Lector["Precio"];
 
+
+                    //Creamos un aux marca para poder cargar las columnas
+
+                    aux.idMarca = new Marca();
+                    aux.idMarca.Id = (int)AccesoDatos.Lector["IdMarca"];
+                    aux.idMarca.Descripcion = (string)AccesoDatos.Lector["DescripcionMarca"];
+
+                    //Creamos un aux categoria para poder cargar las columnas
+
+                    aux.idCategoria = new Categoria();
+                    if (AccesoDatos.Lector["DescripcionCate"] is DBNull && AccesoDatos.Lector["Idcategoria"] is DBNull)
+                    {
+                        aux.idCategoria.Descripcion = "Sin descripcion";
+                        aux.idCategoria.Id = 0;
+                    }
+                    else
+                    {
+
+                        aux.idCategoria.Id = (int)AccesoDatos.Lector["Idcategoria"];
+                        aux.idCategoria.Descripcion = (string)AccesoDatos.Lector["DescripcionCate"];
+                    }
+
+
+                    aux.IdImagenUrl = new Imagenes();
+                    if (AccesoDatos.Lector["ImagenURL"] is DBNull || AccesoDatos.Lector["IdImg"] is DBNull)
+                    {
+                        aux.IdImagenUrl.id = 0;
+                        aux.IdImagenUrl.ImagenURL = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
+                    }
+                    else
+                    {
+
+                        aux.IdImagenUrl.id = (int)AccesoDatos.Lector["IdImg"];
+                        aux.IdImagenUrl.ImagenURL = (string)AccesoDatos.Lector["ImagenUrl"];
+                    }
+
+                    
+                }
+
+
+                AccesoDatos.cerrarConexion();
+                return aux;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+
+
+
+        }
     }
 
 

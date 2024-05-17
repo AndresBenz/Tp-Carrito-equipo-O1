@@ -30,5 +30,11 @@ namespace Tp_Carrito_equipo_O1
 
 
         }
+
+        protected void btnDetalle_Click(object sender, EventArgs e)
+        {
+            string valor = ((Button)sender).CommandArgument;
+            Response.Redirect("Detalle.aspx?id=" + valor);
+        }
     }
 }
