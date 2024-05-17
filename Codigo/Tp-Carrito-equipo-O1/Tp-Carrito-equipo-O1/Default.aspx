@@ -8,7 +8,7 @@
         <div class="row">
             <asp:Repeater ID="repRepetirdor" runat="server">
                 <ItemTemplate> <%// lo que este dentro del item template es lo que se va a repetior segun este armado. %>
-
+                    
                     <div class="col-md-4"> 
                         <div class="card mb-4"> 
                             <img src='<%#Eval("IdImagenUrl.ImagenURL") %>' class="card-img-top" alt="..."> <%--// cuando se usa repeater, se usa #Eval("NamePropiedad")--%>

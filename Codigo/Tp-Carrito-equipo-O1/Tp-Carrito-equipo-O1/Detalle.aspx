@@ -3,13 +3,12 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        
-        <asp:Image ID="imgArticulo" runat="server" />
-        <asp:Label ID="lbNombre" runat="server"></asp:Label>
-        <h4>Descripcion</h4>
-        <asp:Label ID="lbDescripcion" runat="server" Text="Descripcion: "></asp:Label>
-        <asp:Label ID="lbPrecio" runat="server" Text="Precio: "></asp:Label>
+    <div class="container col-md-4">
+      
+        <asp:Image ID="imgArticulo" runat="server"/>
+        <p> Nombre:  <asp:Label ID="lbNombre" runat="server"></asp:Label></p>
+        <p> Descripcion:  <asp:Label ID="lbDescripcion" runat="server" Text="Descripcion: "></asp:Label></p>
+        <p> Precio:  <asp:Label ID="lbPrecio" runat="server" Text="Precio: "></asp:Label> </p>
  </div>
     <%--<asp:Repeater ID="repRepetirdor" runat="server">
     <ItemTemplate> <%// lo que este dentro del item template es lo que se va a repetior segun este armado. %>
