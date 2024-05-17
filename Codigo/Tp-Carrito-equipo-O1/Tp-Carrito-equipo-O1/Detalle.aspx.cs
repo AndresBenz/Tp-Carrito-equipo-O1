@@ -15,14 +15,28 @@ namespace Tp_Carrito_equipo_O1
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            string valor = Request.QueryString["id"].ToString();
-            RepositorioArticulo repoArt = new RepositorioArticulo();
-            Articulo artFiltrado = new Articulo();
-            artFiltrado = repoArt.BuscarID(int.Parse(valor));
-            lbNombre.Text= artFiltrado.Nombre;
-            //If
-            //Image1.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+            try
+            {
+                string valor = Request.QueryString["id"].ToString();
+               
+                
+                    RepositorioArticulo repoArt = new RepositorioArticulo();
+                    Articulo artFiltrado = new Articulo();
+                    artFiltrado = repoArt.BuscarID(int.Parse(valor));
+                    lbNombre.Text = artFiltrado.Nombre;
 
+
+                    imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+                    lbDescripcion.Text = artFiltrado.descripcion;
+                    lbPrecio.Text = artFiltrado.Precio.ToString();
+                
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("");
+            }
+            
         }
     }
 }

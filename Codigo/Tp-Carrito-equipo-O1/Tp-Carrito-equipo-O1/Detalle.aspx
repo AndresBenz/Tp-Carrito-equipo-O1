@@ -4,9 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <asp:Image ID="Image1" runat="server" />
-        <asp:Label ID="lbNombre" runat="server"></asp:Label>
         
+        <asp:Image ID="imgArticulo" runat="server" />
+        <asp:Label ID="lbNombre" runat="server"></asp:Label>
+        <h4>Descripcion</h4>
+        <asp:Label ID="lbDescripcion" runat="server" Text="Descripcion: "></asp:Label>
+        <asp:Label ID="lbPrecio" runat="server" Text="Precio: "></asp:Label>
  </div>
     <%--<asp:Repeater ID="repRepetirdor" runat="server">
     <ItemTemplate> <%// lo que este dentro del item template es lo que se va a repetior segun este armado. %>
