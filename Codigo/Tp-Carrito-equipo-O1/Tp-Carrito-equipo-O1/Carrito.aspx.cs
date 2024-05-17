@@ -37,5 +37,29 @@ namespace Tp_Carrito_equipo_O1
             }
             
         }
+
+        protected void EliminarArticulo(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                int indice = Convert.ToInt32(e.CommandArgument);
+
+                List<Articulo> carrito = (List<Articulo>)Session["carrito"];
+                if (carrito != null && carrito.Count > indice)
+                {
+                    carrito.RemoveAt(indice);
+                    Session["carrito"] = carrito;
+
+                    // Actualiza el Repeater
+                    repRepetirdor.DataSource = carrito;
+                    repRepetirdor.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
+    

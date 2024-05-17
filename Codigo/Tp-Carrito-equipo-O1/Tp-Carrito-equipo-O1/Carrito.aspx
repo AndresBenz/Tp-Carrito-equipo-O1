@@ -15,6 +15,7 @@
                      <h5 class="card-title">Nombre del articulo: <%#Eval("Nombre") %></h5>
                      <p class="card-text">Descripcion: <%#Eval("Descripcion") %></p>
                      <p class="card-text">Precio: $<%#Eval("Precio") %></p>
+                    <asp:Button Text="Eliminar" CssClass="btn btn-danger" CommandName="Eliminar" CommandArgument='<%# Container.ItemIndex %>' runat="server" OnCommand="EliminarArticulo" />
                     </div>
                    </div>
                 </div>
