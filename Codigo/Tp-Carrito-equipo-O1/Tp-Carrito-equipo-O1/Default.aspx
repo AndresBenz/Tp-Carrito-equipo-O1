@@ -14,6 +14,7 @@
                             <img src='<%#Eval("IdImagenUrl.ImagenURL") %>' class="card-img-top" alt="..."> <%--// cuando se usa repeater, se usa #Eval("NamePropiedad")--%>
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
+                                <p class="card-text">ID: <%#Eval("id") %></p>
                                 <p class="card-text">Descripcion: <%#Eval("Descripcion") %></p>
                                 <p class="card-text">Precio: $<%#Eval("Precio") %></p>
                                 <asp:Button Text="Añadir" runat="server" CssClass="btn btn-primary" ID="btnAñadir" CommandArgument='<%#Eval("id")%>' CommandName="ArticuloID" OnClick="btnAñadir_Click" />

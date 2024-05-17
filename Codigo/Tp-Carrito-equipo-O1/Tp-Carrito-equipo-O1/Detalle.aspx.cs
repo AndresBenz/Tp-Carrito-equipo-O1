@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Funcionalidades;
 using Clases;
 using System.Drawing;
+using System.Net;
 
 
 namespace Tp_Carrito_equipo_O1
@@ -18,20 +19,49 @@ namespace Tp_Carrito_equipo_O1
         {
             try
             {
-                
-                    string valor = Request.QueryString["id"].ToString();
+                if (!IsPostBack)
+                {
+                    string valor = Request.QueryString["id"];
 
+                    // Verificar si el parámetro 'id' está presente y no es nulo o vacío
+                    if (string.IsNullOrEmpty(valor))
+                    {
+                        lbNombre.Text = "Error: El ID del artículo no se proporcionó o es inválido.";
+                        imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                        lbDescripcion.Text = string.Empty;
+                        lbPrecio.Text = string.Empty;
+                        return;
+                    }
 
                     RepositorioArticulo repoArt = new RepositorioArticulo();
-                    Articulo artFiltrado = new Articulo();
-                    artFiltrado = repoArt.BuscarID(int.Parse(valor));
+                    Articulo artFiltrado = repoArt.BuscarID(int.Parse(valor));
+
+                    if (artFiltrado == null)
+                    {
+                        lbNombre.Text = "Error: No se encontró el artículo.";
+                        imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                        lbDescripcion.Text = string.Empty;
+                        lbPrecio.Text = string.Empty;
+                        return;
+                    }
+
+                    // Asignar valores a los controles de descripción y precio
                     lbNombre.Text = artFiltrado.Nombre;
 
-
-
-                    if (artFiltrado.IdImagenUrl != null && !string.IsNullOrEmpty(artFiltrado.IdImagenUrl.ImagenURL))//Verifico que nuevamente la imagen al ver detalle no sea nula 
+                    // Verificar si IdImagenUrl es null antes de acceder a ImagenURL
+                    if (artFiltrado.IdImagenUrl != null)
                     {
-                        imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+                        if (!string.IsNullOrEmpty(artFiltrado.IdImagenUrl.ImagenURL))
+                        {
+                            
+                                //ERROR ACA
+                                imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+                           
+                        }
+                        else
+                        {
+                            imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                        }
                     }
                     else
                     {
@@ -40,17 +70,18 @@ namespace Tp_Carrito_equipo_O1
 
                     lbDescripcion.Text = artFiltrado.descripcion;
                     lbPrecio.Text = artFiltrado.Precio.ToString();
-                
+                }
             }
             catch (Exception ex)
             {
+               
                 // Manejo de excepciones
                 lbNombre.Text = "Error: " + ex.Message;
-                imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
                 lbDescripcion.Text = string.Empty;
                 lbPrecio.Text = string.Empty;
+                imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
             }
-
         }
+
     }
 }

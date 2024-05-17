@@ -382,6 +382,7 @@ namespace Funcionalidades
             Conexion_Comandos AccesoDatos = new Conexion_Comandos();
             try
             {
+                //No encuentra el id 2 en la base de datos. Arreglar.
                 AccesoDatos.setearConsulta("select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A INNER join MARCAS M on M.Id = A.IdMarca INNER join CATEGORIAS C on C.Id = A.IdCategoria INNER join IMAGENES I on I.IdArticulo = A.Id where IdArticulo = @id");
                 AccesoDatos.setearParametros("@id",id);
                 AccesoDatos.ejecutarLectura();
