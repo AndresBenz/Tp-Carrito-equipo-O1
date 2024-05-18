@@ -449,6 +449,28 @@ namespace Funcionalidades
 
 
         }
+
+        public int ValidarDuplicado(int id)
+        {
+            Conexion_Comandos AccesoDatos = new Conexion_Comandos();
+            try
+            {
+                AccesoDatos.setearConsulta("select COUNT(a.id) as Cont from ARTICULOS A  left join IMAGENES I  on I.IdArticulo = A.Id  where a.id = @id");
+                AccesoDatos.setearParametros("@id",id);
+                AccesoDatos.ejecutarLectura();
+                int cont=0;
+                while (AccesoDatos.Lector.Read())
+                {
+
+                    cont = (int)AccesoDatos.Lector["Cont"];
+                }
+                return cont;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 

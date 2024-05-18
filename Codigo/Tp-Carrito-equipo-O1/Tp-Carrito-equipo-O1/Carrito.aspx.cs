@@ -12,13 +12,13 @@ namespace Tp_Carrito_equipo_O1
     public partial class Carrito : System.Web.UI.Page
     {
       
-        
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if(!IsPostBack)
+                List<Articulo> carrito = (List<Articulo>)Session["carrito"];
+                if (!IsPostBack)
                 {
                     if (Session["carrito"] == null)
                     {
@@ -27,8 +27,9 @@ namespace Tp_Carrito_equipo_O1
                     }
                     repRepetirdor.DataSource = Session["carrito"]; // repite hasta que se quede sin registros
                     repRepetirdor.DataBind(); //bindea
-                    lbTotal.Text = Session["total"].ToString();
+                    Session["total"] = carrito.Sum(x => x.Precio); //itera sobre cada objeto de la lista y suma el precio
                 }
+                    lbTotal.Text = Session["total"].ToString();
             }
             catch (Exception ex)
             {
@@ -37,7 +38,7 @@ namespace Tp_Carrito_equipo_O1
             }
             
         }
-
+        // decimal.Parse(artiEliminar.Precio);
         protected void EliminarArticulo(object sender, CommandEventArgs e)
         {
             try
@@ -53,7 +54,9 @@ namespace Tp_Carrito_equipo_O1
                     // Actualiza el Repeater
                     repRepetirdor.DataSource = carrito;
                     repRepetirdor.DataBind();
+                    lbTotal.Text = Session["total"].ToString();
                 }
+                Response.Redirect("Carrito.aspx");
             }
             catch (Exception ex)
             {

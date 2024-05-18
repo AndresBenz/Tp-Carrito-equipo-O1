@@ -15,8 +15,10 @@ namespace Tp_Carrito_equipo_O1
         protected void Page_Load(object sender, EventArgs e)
         {
             RepositorioArticulo articulo = new RepositorioArticulo();
-            ListaArticulos = articulo.ListarConSp();
+            int prueba;
 
+            prueba = articulo.ValidarDuplicado(2);
+            ListaArticulos = articulo.ListarConSp();
             if(!IsPostBack)
             {
             repRepetirdor.DataSource = ListaArticulos; // repite hasta que se quede sin registros
@@ -37,7 +39,6 @@ namespace Tp_Carrito_equipo_O1
             aux= repo.BuscarID(int.Parse(valor)); //busca por id
             ListaCarrito.Add(aux);
             Session["carrito"] = ListaCarrito;
-            Session["total"] = ListaCarrito.Sum(x => x.Precio); //itera sobre cada objeto de la lista y suma el precio
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
