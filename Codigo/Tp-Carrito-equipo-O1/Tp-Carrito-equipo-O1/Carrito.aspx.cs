@@ -28,7 +28,17 @@ namespace Tp_Carrito_equipo_O1
                     repRepetirdor.DataSource = Session["carrito"]; // repite hasta que se quede sin registros
                     repRepetirdor.DataBind(); //bindea
                     Session["total"] = carrito.Sum(x => x.Precio); //itera sobre cada objeto de la lista y suma el precio
+                    decimal total = carrito.Sum(x => x.Precio);
+
+                    //usar total > 0 para que no muestre el mensaje si hay articulos en el carrito
+                    //hcaer nuevo label para mostrar el mensaje de vacio
+                    if (total == 0)
+                    {
+                        lbTotal.Text = "No hay artículos en el carrito";
+                        return;
+                    }
                 }
+                
                     lbTotal.Text = Session["total"].ToString();
             }
             catch (Exception ex)
@@ -38,7 +48,7 @@ namespace Tp_Carrito_equipo_O1
             }
             
         }
-        // decimal.Parse(artiEliminar.Precio);
+       
         protected void EliminarArticulo(object sender, CommandEventArgs e)
         {
             try

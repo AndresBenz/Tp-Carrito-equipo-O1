@@ -22,6 +22,7 @@ namespace Tp_Carrito_equipo_O1
             repRepetirdor.DataSource = ListaArticulos; // repite hasta que se quede sin registros
             repRepetirdor.DataBind(); //bindea
             }
+            
         }
 
         protected void btnAñadir_Click(object sender, EventArgs e)
@@ -37,6 +38,7 @@ namespace Tp_Carrito_equipo_O1
             aux= repo.BuscarID(int.Parse(valor)); //busca por id
             ListaCarrito.Add(aux);
             Session["carrito"] = ListaCarrito;
+            Response.Redirect("Default.aspx");
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
