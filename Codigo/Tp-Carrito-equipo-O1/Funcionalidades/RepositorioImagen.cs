@@ -90,6 +90,35 @@ namespace Funcionalidades
 
         }
 
+        public List<Imagenes> ObtenerImg(int idarticulo )
+        {
+            List<Imagenes>  Listafiltrada = new List<Imagenes>();
+
+             Conexion_Comandos AccesoDatos = new Conexion_Comandos();
+            AccesoDatos.setearConsulta("select ImagenUrl from IMAGENES where IdArticulo = @id");
+            AccesoDatos.setearParametros("@id", idarticulo);
+            AccesoDatos.ejecutarLectura();
+
+            while (AccesoDatos.Lector.Read() )
+            {
+               Imagenes aux= new Imagenes();
+                if (AccesoDatos.Lector["ImagenURL"] is DBNull || AccesoDatos.Lector["IdImg"] is DBNull)
+                {
+                    aux.id= 0;
+                    aux.ImagenURL= "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
+                }
+                else
+                {
+
+                    aux.id = (int)AccesoDatos.Lector["IdImg"];
+                    aux.ImagenURL = (string)AccesoDatos.Lector["ImagenUrl"];
+                }
+
+            }
+
+            return Listafiltrada;
+          
+        }
 
 
     }

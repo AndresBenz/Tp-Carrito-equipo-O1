@@ -4,8 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container col-md-4">
-      
+        <asp:Repeater ID="RptImg" runat="server">
+            <ItemTemplate>  
+          <img src='<%# Eval("ImagenURL") %>' class="card-img-top articulo-img" alt="Imagen del artículo">
+
+
+            </ItemTemplate>
+        </asp:Repeater>
         <asp:Image ID="imgArticulo" runat="server"/>
+      
         <p> Nombre:  <asp:Label ID="lbNombre" runat="server"></asp:Label></p>
         <p> Descripcion:  <asp:Label ID="lbDescripcion" runat="server" Text="Descripcion: "></asp:Label></p>
         <p> Precio:  <asp:Label ID="lbPrecio" runat="server" Text="Precio: "></asp:Label> </p>
