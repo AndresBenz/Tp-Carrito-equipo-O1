@@ -58,6 +58,40 @@ namespace Funcionalidades
                 AccesoDatos.cerrarConexion();
             }
         }
+
+        //Crear lista de imagenes para obtener varias ImagenURL
+         public List<Imagenes> Listar()
+        {
+            List<Imagenes> listaCategoria = new List<Imagenes>();
+            Conexion_Comandos AccesoDatos = new Conexion_Comandos();
+            try
+            {
+                AccesoDatos.setearConsulta("select id , IdArticulo,ImagenUrl from IMAGENES");
+                AccesoDatos.ejecutarLectura();
+                while (AccesoDatos.Lector.Read())
+                {
+                    Imagenes aux = new Imagenes();
+                    aux.id = (int)AccesoDatos.Lector["Id"];
+                    aux.idArticulo = (int)AccesoDatos.Lector["IdArticulo"];
+                    aux.ImagenURL= (string)AccesoDatos.Lector["ImagenUrl"];
+                    listaCategoria.Add(aux);
+                }
+
+
+
+                return listaCategoria;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { AccesoDatos.cerrarConexion(); }
+
+        }
+
+
+
     }
 }
 

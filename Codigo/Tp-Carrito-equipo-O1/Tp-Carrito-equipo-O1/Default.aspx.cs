@@ -12,13 +12,18 @@ namespace Tp_Carrito_equipo_O1
     public partial class Default : System.Web.UI.Page
     {
         public List<Articulo> ListaArticulos { get; set; }
+        public List<Imagenes> Listaimg {  get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             RepositorioArticulo articulo = new RepositorioArticulo();
-            ListaArticulos = articulo.ListarConSp();
-            //articulo.ValidarDuplicado();
+            RepositorioImagen img = new RepositorioImagen();
+            ListaArticulos = articulo.ListarConSpImgIndividual();
+            Listaimg = img.Listar();
+            
             if(!IsPostBack)
             {
+                //rptImg.DataSource = Listaimg;
+                //rptImg.DataBind(); 
             repRepetirdor.DataSource = ListaArticulos; // repite hasta que se quede sin registros
             repRepetirdor.DataBind(); //bindea
             }

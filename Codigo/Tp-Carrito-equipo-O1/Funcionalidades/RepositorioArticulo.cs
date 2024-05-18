@@ -95,18 +95,20 @@ namespace Funcionalidades
 
         }
 
-        public List<Articulo> ListarConSp()
+        public List<Articulo> ListarConSpImgIndividual ()
         {
             List<Articulo> lista = new List<Articulo>();
             Conexion_Comandos datos = new Conexion_Comandos();
 
             try
             {
-                string consulta = "select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A left join MARCAS M on M.Id = A.IdMarca left join CATEGORIAS C on C.Id = A.IdCategoria left join IMAGENES I on I.IdArticulo = A.Id where Precio > 0 ";
+                string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS DescripcionMarca, C.Id AS IdCategoria, C.Descripcion AS DescripcionCate, MIN(I.Id) AS IdImg, MIN(I.ImagenUrl) AS ImagenUrl FROM  ARTICULOS A  LEFT JOIN  MARCAS M ON M.Id = A.IdMarca LEFT JOIN  CATEGORIAS C ON C.Id = A.IdCategoria LEFT JOIN IMAGENES I ON I.IdArticulo = A.Id  WHERE  Precio > 0 GROUP BY    A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id, M.Descripcion, C.Id, C.Descripcion;";
 
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
+
+
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -115,15 +117,11 @@ namespace Funcionalidades
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
-
                     // para poder cargar IdMarca
-
                     aux.idMarca = new Marca();
                     aux.idMarca.Id = (int)datos.Lector["IdMarca"];
                     aux.idMarca.Descripcion = (string)datos.Lector["DescripcionMarca"];
-
                     //Creamos un aux categoria para poder cargar las columnas
-
                     aux.idCategoria = new Categoria();
                     if (datos.Lector["DescripcionCate"] is DBNull && datos.Lector["Idcategoria"] is DBNull)
                     {
@@ -136,8 +134,6 @@ namespace Funcionalidades
                         aux.idCategoria.Id = (int)datos.Lector["Idcategoria"];
                         aux.idCategoria.Descripcion = (string)datos.Lector["DescripcionCate"];
                     }
-
-
                     // me aseguro que no sea nulo
                     aux.IdImagenUrl = new Imagenes();
                     if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull)
@@ -151,15 +147,73 @@ namespace Funcionalidades
                         aux.IdImagenUrl.id = (int)datos.Lector["IdImg"];
                         aux.IdImagenUrl.ImagenURL = (string)datos.Lector["ImagenUrl"];
                     }
-
-
-
-
-
-
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     lista.Add(aux);
                 }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<Articulo> ListarConSp()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            Conexion_Comandos datos = new Conexion_Comandos();
+
+            try
+            {
+                string consulta = "select  a.Id, A.Codigo, A.Nombre,A.Descripcion,A.Precio,m.Id as IdMarca ,M.Descripcion AS DescripcionMarca, c.Id as Idcategoria,C.Descripcion AS DescripcionCate,i.Id as idimg,I.ImagenUrl from ARTICULOS A left join MARCAS M on M.Id = A.IdMarca left join CATEGORIAS C on C.Id = A.IdCategoria left join IMAGENES I on I.IdArticulo = A.Id where Precio > 0 ";
+
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    
+                    aux.id = (int)datos.Lector["id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.descripcion = (string)datos.Lector["Descripcion"];
+                    // para poder cargar IdMarca
+                    aux.idMarca = new Marca();
+                    aux.idMarca.Id = (int)datos.Lector["IdMarca"];
+                    aux.idMarca.Descripcion = (string)datos.Lector["DescripcionMarca"];
+                    //Creamos un aux categoria para poder cargar las columnas
+                    aux.idCategoria = new Categoria();
+                    if (datos.Lector["DescripcionCate"] is DBNull && datos.Lector["Idcategoria"] is DBNull)
+                    {
+                        aux.idCategoria.Descripcion = "Sin descripcion";
+                        aux.idCategoria.Id = 0;
+                    }
+                    else
+                    {
+
+                        aux.idCategoria.Id = (int)datos.Lector["Idcategoria"];
+                        aux.idCategoria.Descripcion = (string)datos.Lector["DescripcionCate"];
+                    }
+                    // me aseguro que no sea nulo
+                    aux.IdImagenUrl = new Imagenes();
+                    if (datos.Lector["ImagenURL"] is DBNull || datos.Lector["IdImg"] is DBNull)
+                    {
+                        aux.IdImagenUrl.id = 0;
+                        aux.IdImagenUrl.ImagenURL = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
+                    }
+                    else
+                    {
+
+                        aux.IdImagenUrl.id = (int)datos.Lector["IdImg"];
+                        aux.IdImagenUrl.ImagenURL = (string)datos.Lector["ImagenUrl"];
+                    }
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    lista.Add(aux);
+                }
+
                 return lista;
             }
             catch (Exception ex)
