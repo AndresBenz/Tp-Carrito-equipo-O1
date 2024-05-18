@@ -15,10 +15,8 @@ namespace Tp_Carrito_equipo_O1
         protected void Page_Load(object sender, EventArgs e)
         {
             RepositorioArticulo articulo = new RepositorioArticulo();
-            int prueba;
-
-            prueba = articulo.ValidarDuplicado(2);
             ListaArticulos = articulo.ListarConSp();
+            //articulo.ValidarDuplicado();
             if(!IsPostBack)
             {
             repRepetirdor.DataSource = ListaArticulos; // repite hasta que se quede sin registros
