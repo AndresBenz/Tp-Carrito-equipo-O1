@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
+
 namespace Tp_Carrito_equipo_O1
 {
     public partial class Detalle : System.Web.UI.Page
@@ -49,32 +50,37 @@ namespace Tp_Carrito_equipo_O1
 
                     // Asignar valores a los controles de descripción y precio
                     lbNombre.Text = artFiltrado.Nombre;
-                    lbDescripcion.Text = artFiltrado.descripcion;
-                    lbPrecio.Text = artFiltrado.Precio.ToString();
 
-                    // Obtener imágenes del artículo
-                    Listaimg = repoimg.ObtenerImg(artFiltrado.id);
-
-                    // Filtrar imágenes válidas
-                    var imagenesValidas = Listaimg.Where(img => !string.IsNullOrEmpty(img.ImagenURL) && VerificarUrlImagen(img.ImagenURL)).ToList();
-
-                    // Verificar la cantidad de imágenes válidas
-                    if (imagenesValidas.Count >= 2)
+                    // Verificar si IdImagenUrl es null antes de acceder a ImagenURL
+                    if (artFiltrado.IdImagenUrl != null)
                     {
-                        imgArticulo.ImageUrl = imagenesValidas.First().ImagenURL;
-                        RptImg.DataSource = imagenesValidas;
-                        RptImg.DataBind();
+                        if (!string.IsNullOrEmpty(artFiltrado.IdImagenUrl.ImagenURL))
+                        {
+
+                            //ERROR ACA
+                             Listaimg =  repoimg.ObtenerImg(artFiltrado.id);
+                            imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+                           
+                        }
+                        else
+                        {
+                            imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                        }
                     }
                     else
                     {
                         imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
-                        RptImg.DataSource = null;
-                        RptImg.DataBind();
                     }
+
+                    RptImg.DataSource = Listaimg; RptImg.DataBind();
+
+                    lbDescripcion.Text = artFiltrado.descripcion;
+                    lbPrecio.Text = artFiltrado.Precio.ToString();
                 }
             }
             catch (Exception ex)
             {
+               
                 // Manejo de excepciones
                 lbNombre.Text = "Error: " + ex.Message;
                 lbDescripcion.Text = string.Empty;
@@ -83,21 +89,5 @@ namespace Tp_Carrito_equipo_O1
             }
         }
 
-        private bool VerificarUrlImagen(string url)
-        {
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "HEAD";
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    return response.StatusCode == HttpStatusCode.OK;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

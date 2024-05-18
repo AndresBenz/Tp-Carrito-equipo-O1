@@ -51,5 +51,30 @@ namespace Tp_Carrito_equipo_O1
             string valor = ((Button)sender).CommandArgument;
             Response.Redirect("Detalle.aspx?id=" + valor);
         }
+
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+            List<Articulo> listaFiltrada;
+            string filtro = txtBuscar.Text.ToLower();
+            // Criterio de filtracion: Nombre o Codigo de Articulo con al menos 2 caracteres
+            if (filtro.Length >= 2)
+            {
+                listaFiltrada = ListaArticulos.FindAll(X => X.Nombre.ToLower().Contains(filtro));
+            }
+            else
+            {
+                listaFiltrada = ListaArticulos;
+            }
+
+
+            repRepetirdor.DataSource = listaFiltrada;
+            repRepetirdor.DataBind();
+        }
+
+        protected void txtBuscar_TextChanged1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

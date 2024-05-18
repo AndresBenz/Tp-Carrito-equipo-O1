@@ -5,6 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="d-flex justify-content-center">Artículos</h1>
     <div class="container text-center">
+        <asp:TextBox placeholder="Buscar producto..." AutoPostBack="true" ID="txtBuscar" CssClass="form-control me-2" runat="server" OnTextChanged="txtBuscar_TextChanged"/>
+
         <div class="row">
             <asp:Repeater ID="repRepetirdor" runat="server">
                 <ItemTemplate>
