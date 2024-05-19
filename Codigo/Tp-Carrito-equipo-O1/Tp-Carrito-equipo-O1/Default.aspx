@@ -1,7 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Tp_Carrito_equipo_O1.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .articulo-img {
+            width: 100%;
+            height: 500px; 
+            object-fit: cover;
+        }
+     
+    </style>
+     
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="d-flex justify-content-center">Artículos</h1>
     <div class="container text-center">
@@ -30,7 +40,7 @@
 
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
-            var defaultImageUrl = "https://img.freepik.com/psd-premium/error-renderizado-3d-404-x-incorrecto-acceso-denegado-aprobar-icono-rojo-aislamiento-fondo_747880-16.jpg";
+            var defaultImageUrl = "https://cdn-icons-png.flaticon.com/512/6455/6455737.png"
             var images = document.querySelectorAll('.articulo-img');
             images.forEach(function (img) {
                 img.onerror = function () {

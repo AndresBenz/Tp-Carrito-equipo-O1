@@ -37,9 +37,14 @@ namespace Tp_Carrito_equipo_O1
                         lbTotal.Text = "No hay artículos en el carrito";
                         return;
                     }
+                    if(total > 0)
+                    {
+                        lbTotal.Text = "El total es: $" + Session["total"].ToString();
+                        return;
+                    }
                 }
                 
-                    lbTotal.Text = Session["total"].ToString();
+                    
             }
             catch (Exception ex)
             {
