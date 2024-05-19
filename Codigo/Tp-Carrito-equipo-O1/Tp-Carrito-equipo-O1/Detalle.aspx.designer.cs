@@ -15,24 +15,6 @@ namespace Tp_Carrito_equipo_O1
     {
 
         /// <summary>
-        /// Control RptImg.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RptImg;
-
-        /// <summary>
-        /// Control imgArticulo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgArticulo;
-
-        /// <summary>
         /// Control lbNombre.
         /// </summary>
         /// <remarks>
@@ -58,5 +40,23 @@ namespace Tp_Carrito_equipo_O1
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPrecio;
+
+        /// <summary>
+        /// Control RptImg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RptImg;
+
+        /// <summary>
+        /// Control imgArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgArticulo;
     }
 }
