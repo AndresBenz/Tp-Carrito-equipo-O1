@@ -83,11 +83,22 @@ namespace Tp_Carrito_equipo_O1
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
 
-            Session["total"] = 0;
+
+            List<Articulo> carrito = (List<Articulo>)Session["carrito"];
+            if (carrito != null)
+            { 
+                Session["total"] = 0;
             lbTotal.Text = Session["total"].ToString();
             Session["carrito"] = null;
             MessageBox.Show(" Que disfrutes tu compra ");
             Response.Redirect("Carrito.aspx");
+            }
+            else
+            {
+                MessageBox.Show("No hay articulos en el carrito");
+                Response.Redirect("Carrito.aspx");
+
+            }
 
 
         }

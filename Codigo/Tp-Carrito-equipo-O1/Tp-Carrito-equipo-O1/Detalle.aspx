@@ -51,8 +51,8 @@
                 </div>
             </div>
         </div>
-
-            <asp:Image ID="imgArticulo" runat="server" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+        <asp:Button Text="Atras" CssClass="btn btn-primary btn-large my-2 mx-1" ID="btnAtras" OnClick="btnAtras_Click" runat="server" />
+            <asp:Image ID="imgArticulo"  runat="server" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
         
     </div>
 

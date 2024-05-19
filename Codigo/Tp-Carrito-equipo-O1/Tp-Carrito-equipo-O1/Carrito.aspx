@@ -52,13 +52,15 @@
         .total-label {
             font-size: 24px;
         }
+
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div class="form-floating mb-3">
         <h3><asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
-    <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar" CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
+    <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar Compra.." CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
 
      </div>
 

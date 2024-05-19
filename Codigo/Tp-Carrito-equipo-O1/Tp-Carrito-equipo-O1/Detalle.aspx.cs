@@ -89,5 +89,9 @@ namespace Tp_Carrito_equipo_O1
             }
         }
 
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
     }
 }
