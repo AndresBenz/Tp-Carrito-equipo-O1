@@ -51,26 +51,26 @@ namespace Tp_Carrito_equipo_O1
                     // Asignar valores a los controles de descripción y precio
                     lbNombre.Text = artFiltrado.Nombre;
 
+                     Listaimg =  repoimg.ObtenerImg(artFiltrado.id);
                     // Verificar si IdImagenUrl es null antes de acceder a ImagenURL
-                    if (artFiltrado.IdImagenUrl != null)
-                    {
-                        if (!string.IsNullOrEmpty(artFiltrado.IdImagenUrl.ImagenURL))
-                        {
+                    //if (artFiltrado.IdImagenUrl != null)
+                    //{
+                    //    if (!string.IsNullOrEmpty(artFiltrado.IdImagenUrl.ImagenURL))
+                    //    {   
 
-                            //ERROR ACA
-                             Listaimg =  repoimg.ObtenerImg(artFiltrado.id);
-                            imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
+                    //        //ERROR ACA
+                    //        imgArticulo.ImageUrl = artFiltrado.IdImagenUrl.ImagenURL;
                            
-                        }
-                        else
-                        {
-                            imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
-                        }
-                    }
-                    else
-                    {
-                        imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
-                    }
+                    //    }
+                    //    else
+                    //    {
+                    //        imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    imgArticulo.ImageUrl = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg";
+                    //}
 
                     RptImg.DataSource = Listaimg; RptImg.DataBind();
 
