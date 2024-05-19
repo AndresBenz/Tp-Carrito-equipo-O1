@@ -3,9 +3,36 @@
 <!DOCTYPE html>
 
 <html>
+     <style>
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer h3 {
+            font-size: 20px; 
+            margin-bottom: 10px; 
+            color:#3C3C3C;
+        }
+         body {
+            background: linear-gradient(to bottom, #F0FFFF, #F0F8FF); 
+            min-height: 100vh; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+          .nav-link .cart-icon {
+            width: 24px; 
+            height: 24px;
+            margin-right: 5px;
+            vertical-align: middle; 
+        }
+
+    </style>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>MundoShop</title>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     
@@ -24,7 +51,9 @@
                     <div class="navbar-nav">
                       <!--  <a class="nav-link active" aria-current="page" href="Default.aspx">Inicio</a> -->
                     
-                        <a class="nav-link" href="Carrito.aspx">Carrito
+                        <a class="nav-link" href="Carrito.aspx">
+                            <img src="carrito-de-compras.png" alt="Carrito" class="cart-icon">
+                            
 
                         <asp:Label class="text-center" ID=lbContador Text="" runat="server" />
                         </a> 
@@ -38,5 +67,9 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+      <footer> 
+            <h3>Hecho por: Agustin Herrera, Facu Dorrego, Andres Benitez </h3>
+      </footer>
 </body>
+  
 </html>

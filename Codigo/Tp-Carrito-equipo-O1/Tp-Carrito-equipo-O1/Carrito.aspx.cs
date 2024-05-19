@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Clases;
 using Funcionalidades;
 
@@ -85,6 +86,7 @@ namespace Tp_Carrito_equipo_O1
             Session["total"] = 0;
             lbTotal.Text = Session["total"].ToString();
             Session["carrito"] = null;
+            MessageBox.Show(" Que disfrutes tu compra ");
             Response.Redirect("Carrito.aspx");
 
 
