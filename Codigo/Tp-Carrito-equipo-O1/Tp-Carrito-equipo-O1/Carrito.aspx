@@ -4,19 +4,19 @@
     <style>
         .card-container {
             display: flex;
-            flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-            justify-content: center; /* Centra horizontalmente dentro del contenedor */
-            align-items: center; /* Centra verticalmente dentro del contenedor */
-            min-height: 100vh; /* Establece el alto mínimo como 100% de la altura visible de la ventana */
-            padding: 20px; /* Añade espacio alrededor del contenedor */
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
         }
 
         .card {
-            margin-bottom: 20px; /* Espacio entre cada tarjeta */
+            margin-bottom: 20px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
-            width: 100%; /* Ajusta el ancho de la tarjeta */
-            max-width: 540px; /* Ancho máximo de la tarjeta según tu diseño */
+            width: 100%; 
+            max-width: 540px; 
         }
 
             .card:hover {
@@ -25,16 +25,16 @@
             }
 
         .card-img-container {
-            height: 500px; /* Altura deseada para la imagen */
+            height: 500px;
             display: flex;
-            justify-content: center; /* Centra horizontalmente la imagen */
-            align-items: center; /* Centra verticalmente la imagen */
+            justify-content: center; 
+            align-items: center; 
         }
 
         .card-img-top {
-            max-width: 100%; /* Ajusta el ancho máximo de la imagen */
-            max-height: 100%; /* Ajusta el alto máximo de la imagen */
-            object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+            max-width: 100%; 
+            max-height: 100%;
+            object-fit: cover; 
         }
 
         .card-body {
@@ -59,7 +59,8 @@
      <div class="form-floating mb-3">
      <h3>
          <asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
- </div>
+         <asp:Button Text="BtnFinalizar" ID="btnFinalizar" OnClick="btnFinalizar_Click" runat="server" />
+     </div>
 
     <div class="card-container">
         <asp:Repeater ID="repRepetirdor" runat="server">

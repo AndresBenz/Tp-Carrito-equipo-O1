@@ -52,9 +52,8 @@
             </div>
         </div>
 
-        <div style="border: 1px solid #ccc; padding: 10px; margin-top: 20px; max-width: 400px; margin-left: auto; margin-right: auto;">
             <asp:Image ID="imgArticulo" runat="server" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
-        </div>
+        
     </div>
 
     <script>

@@ -78,6 +78,17 @@ namespace Tp_Carrito_equipo_O1
                 throw ex;
             }
         }
+
+        protected void btnFinalizar_Click(object sender, EventArgs e)
+        {
+
+            Session["total"] = 0;
+            lbTotal.Text = Session["total"].ToString();
+            Session["carrito"] = null;
+            Response.Redirect("Carrito.aspx");
+
+
+        }
     }
 }
     
