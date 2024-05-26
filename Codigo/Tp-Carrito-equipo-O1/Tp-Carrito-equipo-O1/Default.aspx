@@ -15,6 +15,13 @@
             transition: transform 0.3s ease, background-color 0.3s ease; 
         }
 
+        .btn-custom-green {
+        background-color: #00c400; 
+        color: white;
+        border: none;
+        transition: transform 0.3s ease, background-color 0.3s ease; 
+        }
+
         .btn-custom-blue:hover {
             background-color: #4682B4; 
             transform: scale(1.1); 
@@ -69,10 +76,9 @@
                                <div style="text-align: center; margin-top: 20px;">
                                 
                                 <h5 class="card-title"><%# Eval("Nombre") %></h5>
-                                <p class="card-text">ID: <%# Eval("id") %></p>
                                 <p class="card-text">Descripción: <%# Eval("Descripcion") %></p>
                                 <p class="card-text">Precio: $<%# Eval("Precio") %></p>
-                 <asp:Button Text="Añadir" runat="server" CssClass="btn btn-primary btn-large my-2 mx-1" ID="btnAñadir" CommandArgument='<%# Eval("id") %>' CommandName="ArticuloID" OnClick="btnAñadir_Click" />
+                                <asp:Button Text="Añadir al carrito" runat="server" CssClass="btn btn-success btn-large my-2 mx-1 " ID="btnAñadir" CommandArgument='<%# Eval("id") %>' CommandName="ArticuloID" OnClick="btnAñadir_Click" />
                                 <asp:Button Text="Ver Detalle" runat="server" CssClass="btn btn-primary btn-large my-2 mx-1" ID="btnDetalle" CommandArgument='<%# Eval("id") %>' CommandName="ArticuloID" OnClick="btnDetalle_Click" />
                                  </div>
                         </div>

@@ -24,5 +24,7 @@ namespace Clases
         public decimal Precio { get; set; }
 
         public Imagenes IdImagenUrl { get; set; } //toma del objeto Imagenes (clase)
+
+        public int cantidad { get; set; }
     }
 }

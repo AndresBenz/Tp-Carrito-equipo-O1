@@ -26,10 +26,23 @@ namespace Tp_Carrito_equipo_O1
                         lbTotal.Text = "No hay artículos en el carrito";
                         return;
                     }
-                    repRepetirdor.DataSource = Session["carrito"]; // repite hasta que se quede sin registros
-                    repRepetirdor.DataBind(); //bindea
-                    Session["total"] = carrito.Sum(x => x.Precio); //itera sobre cada objeto de la lista y suma el precio
-                    decimal total = carrito.Sum(x => x.Precio);
+                    // Agrupar los artículos por su ID y contar cuántas veces se repite cada ID
+                    var agrupados = carrito.GroupBy(a => a.id)
+                                   .Select(g => new {
+                                       id = g.Key,
+                                       Cantidad = g.Count(),
+                                       Precio = g.First().Precio,
+                                       IdImagenUrl = g.First().IdImagenUrl.ImagenURL,
+                                       Nombre = g.First().Nombre,
+                                       Descripcion = g.First().descripcion,
+
+                                   });
+
+                    repRepetirdor.DataSource = agrupados; // Usar la lista agrupada en lugar de la lista original
+                    repRepetirdor.DataBind();
+
+                    decimal total = agrupados.Sum(item => item.Precio * item.Cantidad);
+                    Session["total"] = total;
 
                     //usar total > 0 para que no muestre el mensaje si hay articulos en el carrito
                     //hcaer nuevo label para mostrar el mensaje de vacio
@@ -43,8 +56,11 @@ namespace Tp_Carrito_equipo_O1
                         lbTotal.Text = "El total es: $" + Session["total"].ToString();
                         return;
                     }
+
+
                 }
                 
+
                     
             }
             catch (Exception ex)
@@ -54,7 +70,20 @@ namespace Tp_Carrito_equipo_O1
             }
             
         }
-       
+
+        protected void repRepetirdor_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var item = e.Item.DataItem as dynamic;
+                System.Web.UI.WebControls.Label lbCantidad = (System.Web.UI.WebControls.Label)e.Item.FindControl("lbCantidad");
+                
+
+                lbCantidad.Text = "Cantidad: " + item.Cantidad.ToString();
+                
+            }
+        }
+
         protected void EliminarArticulo(object sender, CommandEventArgs e)
         {
             try

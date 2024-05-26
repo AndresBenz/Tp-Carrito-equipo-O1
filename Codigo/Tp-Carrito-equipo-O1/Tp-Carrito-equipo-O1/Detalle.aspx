@@ -51,7 +51,10 @@
                 </div>
             </div>
         </div>
-        <asp:Button Text="Atras" CssClass="btn btn-primary btn-large my-2 mx-1" ID="btnAtras" OnClick="btnAtras_Click" runat="server" />
+        <div style="text-align: center; margin-bottom: 20px;">
+            <asp:Button Text="Añadir al carrito" runat="server" CssClass="btn btn-success btn-large my-2 mx-1 " ID="btnAñadir" CommandArgument='<%# Eval("id") %>' CommandName="ArticuloID" OnClick="btnAñadir_Click" />
+            <asp:Button Text="Atras" CssClass="btn btn-primary btn-large my-2 mx-1" ID="Button2" OnClick="btnAtras_Click" runat="server" />
+        </div>
             <asp:Image ID="imgArticulo"  runat="server" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
         
     </div>

@@ -89,6 +89,21 @@ namespace Tp_Carrito_equipo_O1
             }
         }
 
+        protected void btnAñadir_Click(object sender, EventArgs e)
+        {
+            List<Articulo> ListaCarrito = Session["carrito"] as List<Articulo>;
+            if (ListaCarrito == null)
+            {
+                ListaCarrito = new List<Articulo>();
+            }
+            string valor = Request.QueryString["id"]; //casteo  y del argument me trae explicito
+            Articulo aux = new Articulo();
+            RepositorioArticulo repo = new RepositorioArticulo();
+            aux = repo.BuscarID(int.Parse(valor)); //busca por id
+            ListaCarrito.Add(aux);
+            Session["carrito"] = ListaCarrito;
+            Response.Redirect("Detalle.aspx?id=" + valor);
+        }
         protected void btnAtras_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");

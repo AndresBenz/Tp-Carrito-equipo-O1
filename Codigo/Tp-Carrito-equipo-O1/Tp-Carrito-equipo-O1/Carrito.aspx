@@ -57,29 +57,26 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-     <div class="form-floating mb-3">
-        <h3><asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
-    <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar Compra.." CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
-
-     </div>
-
     <div class="card-container">
         <asp:Repeater ID="repRepetirdor" runat="server">
             <ItemTemplate>
                 <div class="card">
                     <div class="card-img-container">
-                        <img src='<%#Eval("IdImagenUrl.ImagenURL") %>' class="card-img-top" alt="...">
+                        <img src='<%#Eval("IdImagenUrl") %>' class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Nombre del artículo: <%#Eval("Nombre") %></h5>
                         <p class="card-text">Descripción: <%#Eval("Descripcion") %></p>
-                        <p class="card-text">Precio: $<%#Eval("Precio") %></p>
+                        <asp:Label ID="lbCantidad" runat="server" Text='<%# "Cantidad: " + Eval("Cantidad") %>'  />                     
+                        <p class="card-text">Precio por unidad: $<%#Eval("Precio") %></p>
                         <asp:Button Text="Eliminar" CssClass="btn btn-danger btn-eliminar" CommandName="Eliminar" CommandArgument='<%# Container.ItemIndex %>' runat="server" OnCommand="EliminarArticulo" />
                     </div>
-                </div>
-            </ItemTemplate>
+                </div>      
+           </ItemTemplate>
         </asp:Repeater>
     </div>
-   
+    <div class="form-floating mb-3">
+        <h3><asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
+        <asp:Button ID="BtnFinalizar" runat="server" Text="Finalizar Compra.." CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
+    </div>
 </asp:Content>
