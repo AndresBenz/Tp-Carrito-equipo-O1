@@ -44,6 +44,9 @@
         .btn-eliminar {
             width: 100%;
         }
+        .btn-Agregar {
+            width: 100%;
+        }
 
         .form-floating {
             text-align: center;
@@ -58,6 +61,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card-container">
+    <div class="form-floating mb-3">
+        <h3><asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
+        <asp:Button ID="BtnFinalizar" runat="server" Text="Finalizar Compra.." CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
+    </div>
         <asp:Repeater ID="repRepetirdor" runat="server">
             <ItemTemplate>
                 <div class="card">
@@ -69,14 +76,12 @@
                         <p class="card-text">Descripción: <%#Eval("Descripcion") %></p>
                         <asp:Label ID="lbCantidad" runat="server" Text='<%# "Cantidad: " + Eval("Cantidad") %>'  />                     
                         <p class="card-text">Precio por unidad: $<%#Eval("Precio") %></p>
+                                <asp:Button Text="Agregar Articulo" runat="server" CssClass="btn btn-success btn-Agregar" ID="btnAgregarCant" CommandArgument='<%# Eval("id") %>' CommandName="ArticuloID" OnClick="btnAgregarCant_Click" />
+
                         <asp:Button Text="Eliminar" CssClass="btn btn-danger btn-eliminar" CommandName="Eliminar" CommandArgument='<%# Container.ItemIndex %>' runat="server" OnCommand="EliminarArticulo" />
                     </div>
                 </div>      
            </ItemTemplate>
         </asp:Repeater>
-    </div>
-    <div class="form-floating mb-3">
-        <h3><asp:Label ID="lbTotal" runat="server" Text=""></asp:Label></h3>
-        <asp:Button ID="BtnFinalizar" runat="server" Text="Finalizar Compra.." CssClass="btn btn-primary btn-lg btn-block" OnClick="btnFinalizar_Click" />
     </div>
 </asp:Content>

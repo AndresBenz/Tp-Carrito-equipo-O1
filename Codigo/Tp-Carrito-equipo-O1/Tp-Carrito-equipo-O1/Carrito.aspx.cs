@@ -82,7 +82,21 @@ namespace Tp_Carrito_equipo_O1
                 lbCantidad.Text = "Cantidad: " + item.Cantidad.ToString();
                 
             }
+        
         }
+
+        protected void btnAgregarCant_Click(object sender, EventArgs e)
+        {
+            List<Articulo> carrito = (List<Articulo>)Session["carrito"];
+            string valor = ((System.Web.UI.WebControls.Button)sender).CommandArgument; //casteo  y del argument me trae explicito
+            Articulo aux = new Articulo();
+            RepositorioArticulo repo = new RepositorioArticulo();
+            aux = repo.BuscarID(int.Parse(valor)); //busca por id
+            carrito.Add(aux);
+            Session["carrito"] = carrito;
+            Response.Redirect("Carrito.aspx");
+        }
+
 
         protected void EliminarArticulo(object sender, CommandEventArgs e)
         {
